@@ -4,32 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CurrencyConverter
+namespace CurrencyConverter;
+
+public class Currency_Converter : ICurrencyConverter
 {
-    public class CurrencyConverter : ICurrencyConverter
+    private readonly IRateProvider rateProvider;
+
+    public Currency_Converter(IRateProvider rateProvider)
+        => this.rateProvider = rateProvider;
+
+    public Money Convert(Money from, Currency to)
     {
-        private readonly IRateProvider rateProvider;
+        // USD to USD
+        if (from.Currency == to)
+            return from;
 
-        public CurrencyConverter(IRateProvider rateProvider)
-            => this.rateProvider = rateProvider;
-
-        public Money Convert(Money from, Currency to)
+        try
         {
-            // USD to USD
-            if (from.Currency == to)
-                return from;
+            var rate = rateProvider.GetRate(from.Currency, to);
+            var convertedAmount = from.Amount * rate;
 
-            try
-            {
-                var rate = rateProvider.GetRate(from.Currency, to);
-                var convertedAmount = from.Amount * rate;
-
-                return new Money(convertedAmount, to);
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
+            return new Money(convertedAmount, to);
+        }
+        catch (Exception ex)
+        {
+            throw ;
         }
     }
 }
+

@@ -1,4 +1,6 @@
-﻿using CurrencyConverter;
+﻿using System;
+using System.Collections.Generic;
+using CurrencyConverter;
 
 namespace CurrencyConverterMsTest;
 

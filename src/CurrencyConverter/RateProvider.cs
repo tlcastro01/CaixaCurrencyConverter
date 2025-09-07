@@ -1,4 +1,7 @@
-﻿namespace CurrencyConverter
+﻿using System;
+using System.Collections.Generic;
+
+namespace CurrencyConverter
 {
     public class RateProvider : IRateProvider
     {

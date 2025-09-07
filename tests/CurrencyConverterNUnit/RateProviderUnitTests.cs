@@ -1,6 +1,9 @@
 ﻿using CurrencyConverter;
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 
-namespace CurrencyConverterNUnit;
+namespace CurrencyConverterNUnitTest;
 
 public class RateProviderUnitTests
 {
